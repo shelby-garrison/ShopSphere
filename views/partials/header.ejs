@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Comm</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-helvetica_now_display">
+    <nav class="w-full bg-gray-900 text-white px-5 py-3 flex justify-between items-center">
+        <h1 class="text-6xl font-semibold">
+            <span class="text-blue-600">Scatch</span>
+        </h1>
+        
+        <% var loggedIn = typeof loggedIn !== "undefined"? loggedIn:true %>
+        <%  if(loggedIn) { %>
+        <div class="flex gap-5">
+            <a href="/shop" class="text-lg hover:text-blue-500">Shop</a>
+            <a href="/cart" class="text-lg hover:text-blue-500">Cart</a>
+            <a href="/myAccount" class="text-lg hover:text-blue-500">My Account</a>
+            <a href="/users/logout" class="text-lg hover:text-red-500">Logout</a>
+        </div>
+        <% } %>
+    </nav>

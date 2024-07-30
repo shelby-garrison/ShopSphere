@@ -1,0 +1,134 @@
+<%- include('./partials/header') %>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .hover-shadow:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .hover-shadow-light:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .form-container:hover {
+        transform: translateY(-10px);
+    }
+
+    .form-input {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px 15px;
+        width: 100%;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.3);
+    }
+
+    .form-button {
+        background-color: #3b82f6;
+        border: none;
+        border-radius: 8px;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 15px 30px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .form-button:hover {
+        background-color: #2563eb;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #eef2f3, #8e9eab);
+    }
+
+    .left-section {
+        background-color: #f3f4f6;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .left-section:hover {
+        transform: translateY(-10px);
+    }
+
+    .right-section {
+        background: url('path/to/your/image.jpg') center/cover no-repeat;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<% if(error.length>0){ %>
+    <div class="absolute top-5 left-1/2 transform -translate-x-1/2 p-3 rounded-md bg-red-500">
+        <span class="inline-block mt-1 mb-1 text-white fade-in">
+            <%= error %>
+        </span>
+    </div>
+<% } %>
+
+<div class="container px-10">
+
+    <div class="left-section w-1/2">
+
+        <div class="form-container">
+            <h3  style="text-align:center; padding-top:0px" class="text-4xl font-bold text-gray-800">Welcome to <span class="text-blue-500">Scatch</span></h3>
+
+            <h4 style="padding-top:15px" class="text-2xl mb-5 text-gray-600">Create your  <span class="text-4xl font-bold text-blue-500">Scatch</span> account</h4>
+            <form autocomplete="off" action="/users/register" method="post">
+                <input class="form-input hover-shadow-light" type="text" placeholder="Full Name" name="fullname">
+                <input class="form-input hover-shadow-light" type="email" placeholder="Email" name="email">
+                <input class="form-input hover-shadow-light" type="password" placeholder="Password" name="password">
+                <input class="form-button hover-shadow-light" type="submit" value="Create My Account">
+            </form>
+        </div>
+    </div>
+    
+    <div class="right-section w-1/2">
+        <div class="form-container">
+            <h4 class="text-2xl mb-10 text-gray-600">Login to your <span class="text-4xl font-bold text-blue-500">Scatch</span> account</h4>
+            <form autocomplete="off" action="/users/login" method="post">
+                <input class="form-input hover-shadow-light" type="email" placeholder="Email" name="email">
+                <input class="form-input hover-shadow-light" type="password" placeholder="Password" name="password">
+                <input class="form-button hover-shadow-light" type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>
