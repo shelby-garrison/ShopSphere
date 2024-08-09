@@ -39,7 +39,16 @@
                 <div class="flex justify-between items-center px-4 py-4" style="background-color: '<%= product.panelcolor %>'; color:'<%= product.textcolor %>'">
                     <div>
                         <h3 class="font-semibold"><%= product.name %></h3>
-                        <h4 class="font-medium">₹ <%= product.price %></h4>
+                        <h3 class="font-semibold"><%=  %></h3>
+                        <div id="description" data-productid="<%= product._id %>">
+                            Lorem ipsum dolor sit amet
+                            <span class="dots" data-productid="<%= product._id %>">...</span>
+                            <span class="more" data-productid="<%= product._id %>" style="display: none;">
+                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                            </span>
+                        </div>
+                        <button onclick="toggleDescription('<%= product._id %>')" class="myBtn" data-productid="<%= product._id %>">Read more</button>
+                         <h4 class="font-medium">₹ <%= product.price %></h4>
                     </div>
                     <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-200 btn-hover add-to-cart" href="#" data-id="<%= product._id %>">
                         <i class="ri-add-line text-gray-700"></i>
@@ -74,7 +83,7 @@
                     if (data.success) {
                         showNotification('Product added to cart!');
                     } else {
-                        showNotification('bc.');
+                        showNotification('bc');
                     }
                 })
                 .catch(error => {
@@ -92,4 +101,23 @@
             notificationContainer.style.display = 'none';
         }, 700);
     }
+   
+    function toggleDescription(productId) {
+    
+    const dots = document.querySelector(`.dots[data-productid="${productId}"]`);
+    const moreText = document.querySelector(`.more[data-productid="${productId}"]`);
+    const btnText = document.querySelector(`.myBtn[data-productid="${productId}"]`);
+
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        moreText.style.display = "none";
+        btnText.textContent = "Read more";
+    } else {
+        dots.style.display = "none";
+        moreText.style.display = "inline";
+        btnText.textContent = "Read less";
+    }
+}
+
+
 </script>

@@ -8,18 +8,11 @@ const cors = require("cors");
 const axios = require("axios");
 const sha256 = require("sha256");
 const uniqid = require("uniqid");
-
 const MERCHANT_ID = "PGTESTPAYUAT";
 const PHONE_PE_HOST_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox";
 const SALT_INDEX = 1;
 const SALT_KEY = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
-const APP_BE_URL = "http://localhost:3000"; // our application
-
-
-
-
-
-
+const APP_BE_URL = "http://localhost:3000";
 require("dotenv").config();
 const a=true;
 const ownersRouter = require("./routes/ownersRouter");
@@ -28,9 +21,9 @@ const usersRouter = require("./routes/usersRouter");
 const indexRouter = require("./routes/index");
 const cartRouter = require("./routes/cartRouter");
 const cartRouter2 = require("./routes/cartRouter2");
-
 const db = require("./config/mongoose-connection");
 const isLoggedIn = require("./middlewares/isLoggedIn");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -57,6 +50,8 @@ app.get("*",  async function (req, res) {
   res.render("404");
  }  
  );
+
+
 app.post("/pay", isLoggedIn, async function (req, res, next) {
   // Initiate a payment
 
@@ -157,5 +152,6 @@ app.get("/payment/validate/:merchantTransactionId", async function (req, res) {
     res.send("Sorry!! Error");
   }
 });
+
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));

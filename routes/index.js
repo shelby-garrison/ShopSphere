@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
   let error = req.flash("error");
   res.render("index", { error, loggedIn: false});
 });
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
 router.get("/shop", isloggedin, async function (req, res) {
 let products =  await productModel.find();
@@ -16,7 +16,9 @@ let products =  await productModel.find();
 });
 
 router.get("/myAccount", isloggedin, async function (req, res) {
- const user = req.user;
+  let user = await userModel
+  .findOne({email: req.user.email})
+  .populate("cart.productid");
     res.render("myAccount", {user});
   });
   
