@@ -158,4 +158,5 @@ app.get("/payment/validate/:merchantTransactionId", async function (req, res) {
 });
 
 const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on http://0.0.0.0:${port}`)});
