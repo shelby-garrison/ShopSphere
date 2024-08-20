@@ -48,6 +48,7 @@ app.get("*",  async function (req, res) {
   res.render("404");
  }  
  );
+const key = "b37AF1Jqa4KobSkAoZrrCQNpBvdN4T1U5IZBVBtU"
 const axiosInstance = axios.create({
   baseUrl: "https://external-api.bcon.global/api/v1" ,
   headers: {Authorization: `Bearer ${key}`}
